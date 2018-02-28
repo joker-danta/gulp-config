@@ -20,22 +20,20 @@ var connect = require('gulp-connect');  //启动本地服务，并且保存自�
 
 //配置文件路径
 var paths={
-	src_html:"./src/**/*.html",
-	src_less:"./src/css/**/*.less",
-	src_css:"./src/css/**/*.css",
-	src_sass:"./src/css/**/*.scss",
-	src_json:"./src/**/*.json",
+	src_html:"src/**/*.html",
+	src_less:"src/css/**/*.less",
+	src_css:"src/css/**/*.css",
+	src_sass:"src/css/**/*.scss",
+	src_json:"src/**/*.json",
 	src_images:"src/images/**/*",
-	src_pic:"src/pic/**/*",
-	src_js:"./src/js/**/*.js",
-	src_text:"./src/**/*.text",
+	src_js:"src/js/**/*.js",
+	src_text:"src/**/*.text",
 
 	dist:"./dist",
 	dist_css:"./dist/css",
 	dist_mincss:"./dist/mincss",
 	dist_images:"dist/images",
 	dist_html:"./dist/**/*.html",
-	dist_pic:"dist/pic",
 	dist_js:"./dist/js",
 	dist_minjs:"./dist/minjs"
 };
@@ -124,15 +122,6 @@ gulp.task('images', function() {
 
 });
 
-//产品外观图片任务
-gulp.task('pic',function(){
-	return gulp.src([paths.src_pic])
-	//输出到指定文件夹
-	.pipe(gulp.dest(paths.dist_pic))
-	.pipe(connect.reload())
-	//提醒任务完成
-  .pipe(notify({ message: 'pic is OK' }))
-})
 
 //监听文档
 gulp.task('watch',function(){
@@ -142,7 +131,6 @@ gulp.task('watch',function(){
 	gulp.watch([paths.src_js],['scripts'])
 	//监听图片
 	gulp.watch([paths.src_images],['images'])
-	gulp.watch([paths.src_pic],['pic'])
 	//监听hhtml,json,text
 	gulp.watch([paths.src_html,paths.src_json,paths.src_text], function(event) {
       gulp.run('html')
