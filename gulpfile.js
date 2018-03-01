@@ -126,9 +126,13 @@ gulp.task('images', function() {
 //监听文档
 gulp.task('watch',function(){
 	//监听less,sass,css
-	gulp.watch([paths.src_sass,paths.src_less,paths.src_css],['styles', 'html'])
+	gulp.watch([paths.src_sass,paths.src_less,paths.src_css],function(event){
+		gulp.run(['styles', 'html'])
+	})
 	//监听js
-	gulp.watch([paths.src_js],['scripts'])
+	gulp.watch([paths.src_js],function(event){
+		gulp.run('scripts')
+	})
 	//监听图片
 	gulp.watch([paths.src_images],['images'])
 	//监听hhtml,json,text
